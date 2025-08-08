@@ -1,0 +1,73 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login | Devansh Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-gray-100 to-blue-100 min-h-screen flex items-center justify-center">
+
+  <div class="bg-white shadow-xl rounded-lg w-full max-w-md px-8 py-10 space-y-6">
+    <h2 class="text-2xl font-bold text-center text-blue-700">Admin Login</h2>
+
+    <div id="alert" class="hidden text-center text-sm font-medium py-2 px-4 rounded"></div>
+
+    <form id="loginForm" class="space-y-4">
+      <div>
+        <label for="email" class="block text-sm font-semibold text-gray-700">Email</label>
+        <input type="email" id="email" name="email" required
+               class="mt-1 w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+      </div>
+
+      <div>
+        <label for="password" class="block text-sm font-semibold text-gray-700">Password</label>
+        <input type="password" id="password" name="password" required
+               class="mt-1 w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+      </div>
+
+      <button type="submit"
+              class="w-full bg-blue-600 text-white font-semibold py-2 rounded hover:bg-blue-700 transition">
+        Sign In
+      </button>
+    </form>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const alertBox = document.getElementById("alert");
+
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+
+      alertBox.classList.remove("hidden");
+
+      if (response.ok) {
+        alertBox.textContent = data.message;
+        alertBox.className = "bg-green-100 text-green-700 " + alertBox.className;
+        setTimeout(() => window.location.href = "dashboard.html", 1000);
+      } else {
+        alertBox.textContent = data.error || "Login failed";
+        alertBox.className = "bg-red-100 text-red-700 " + alertBox.className;
+      }
+    });
+  </script>
+</body>
+</html>

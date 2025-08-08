@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Devansh</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    @keyframes scrollTexture {
+      from { background-position: 0 0; }
+      to { background-position: 100px 100px; }
+    }
+    .bg-fabric-animated {
+      background-image: url('../assets/images/top-view-white-tablecloth.jpg');
+      background-repeat: repeat;
+      background-size: cover;
+      background-position: center;
+      animation: scrollTexture 60s linear infinite;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans bg-fabric-animated relative overflow-x-hidden">
+
+  <div id="navbar"></div>
+  <script>
+    fetch('components/navbar.html')
+      .then(res => { if (!res.ok) throw new Error('Failed to load navbar'); return res.text(); })
+      .then(html => { const host = document.getElementById('navbar'); if (host) host.innerHTML = html; })
+      .catch(err => console.error('[navbar]', err));
+  </script>
+
+  <!-- Preloader -->
+  <div id="preloader" class="fixed inset-0 bg-white flex items-center justify-center z-50">
+    <div class="w-12 h-12 border-4 border-blue-600 border-dashed rounded-full animate-spin"></div>
+  </div>
+  <script>
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
+      if (preloader && preloader.parentNode) preloader.remove();
+    });
+  </script>
+
+  <!-- Contact Section -->
+  <section class="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-24 mt-16 sm:mt-20 mb-20 sm:mb-28 bg-white rounded-3xl border border-blue-200 shadow-xl backdrop-blur-sm" data-aos="fade-up">
+    <div class="flex flex-col lg:flex-row items-center lg:items-start gap-10 sm:gap-12">
+      <form id="contactForm" action="https://formspree.io/f/mvgqvyzo" method="POST" class="space-y-6 sm:space-y-7 text-gray-800 flex-1">
+        <!-- Email subject -->
+        <input type="hidden" name="_subject" value="New message from Devansh Portfolio Contact Form">
+        <!-- Honeypot (anti-spam) -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
+        <!-- Auto-response to sender -->
+        <input type="hidden" name="_autoresponse" value="Thanks for reaching out! I'll reply soon.">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-10 text-center text-blue-900 font-display tracking-tight">
+          Let’s Weave Ideas Together 🧵
+        </h2>
+        <div data-aos="fade-up" data-aos-delay="100">
+          <span class="inline-block mr-2">🧷</span>
+          <label class="block text-sm font-medium mb-2" for="name">Name</label>
+          <input type="text" id="name" name="name" required class="w-full border border-gray-300 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 transition-all duration-300 ease-in-out hover:shadow-md bg-white/80" placeholder="Your name" />
+        </div>
+        <div data-aos="fade-up" data-aos-delay="200">
+          <span class="inline-block mr-2">🧷</span>
+          <label class="block text-sm font-medium mb-2" for="email">Email</label>
+          <input type="email" id="email" name="email" required class="w-full border border-gray-300 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 transition-all duration-300 ease-in-out hover:shadow-md bg-white/80" placeholder="you@example.com" />
+        </div>
+        <div data-aos="fade-up" data-aos-delay="300">
+          <span class="inline-block mr-2">🧷</span>
+          <label class="block text-sm font-medium mb-2" for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required class="w-full border border-gray-300 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 transition-all duration-300 ease-in-out hover:shadow-md bg-white/80" placeholder="Write your message here..."></textarea>
+        </div>
+        <div class="text-center mb-6" data-aos="fade-up" data-aos-delay="400">
+          <button type="submit" class="bg-gradient-to-r from-indigo-700 to-rose-500 text-white px-6 sm:px-10 py-3 rounded-xl font-bold shadow-md hover:shadow-xl hover:scale-105 transform transition-transform duration-300 tracking-wide">Send Message ✉️</button>
+        </div>
+        <div class="text-center mb-4" data-aos="fade-up" data-aos-delay="450">
+          <a href="https://wa.me/918433287252" target="_blank" class="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-transform transform hover:scale-105">
+            <img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp.png" alt="WhatsApp" class="w-5 h-5" />
+            Chat on WhatsApp
+          </a>
+        </div>
+        <div class="mt-10 text-center text-gray-500 text-sm">
+          Or email me directly at <a href="mailto:Devanshkatyayanrk@gmail.com" class="text-blue-600 hover:underline">Devanshkatyayanrk@gmail.com</a>
+        </div>
+      </form>
+      <!-- <div class="hidden lg:block flex-shrink-0">
+        <img src="../assets/images/textile-illustration.svg" alt="Decorative Textile Illustration" class="max-w-xs" />
+      </div> -->
+    </div>
+  </section>
+
+  <div id="footer"></div>
+  <script>
+    fetch('components/footer.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('footer').innerHTML = data);
+  </script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    (function(){
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (window.AOS) AOS.init({ duration: 1000, once: true, disable: reduce });
+    })();
+  </script>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const statusDiv = document.createElement('div');
+      statusDiv.className = 'mt-4 text-center font-semibold';
+      form.appendChild(statusDiv);
+
+      statusDiv.textContent = 'Sending...';
+      statusDiv.classList.add('text-gray-600');
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          statusDiv.textContent = '🎉 Thank you! Your message has been sent to my inbox.';
+          statusDiv.classList.remove('text-gray-600');
+          statusDiv.classList.add('text-green-600');
+          form.reset();
+          setTimeout(() => {
+            statusDiv.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+            setTimeout(() => statusDiv.remove(), 500);
+          }, 5000);
+        } else {
+          statusDiv.textContent = '⚠️ Oops! There was a problem sending your message.';
+          statusDiv.classList.remove('text-gray-600');
+          statusDiv.classList.add('text-red-600');
+        }
+      } catch (error) {
+        statusDiv.textContent = '⚠️ Error: Unable to send message.';
+        statusDiv.classList.remove('text-gray-600');
+        statusDiv.classList.add('text-red-600');
+      }
+    });
+  </script>
+</body>
+</html>

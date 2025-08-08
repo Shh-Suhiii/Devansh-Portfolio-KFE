@@ -1,0 +1,13 @@
+
+
+<!-- Preloader Component -->
+<div id="preloader" class="fixed inset-0 bg-white flex items-center justify-center z-50">
+  <div class="w-12 h-12 border-4 border-blue-600 border-dashed rounded-full animate-spin"></div>
+</div>
+
+<script>
+  window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) preloader.style.display = 'none';
+  });
+</script>

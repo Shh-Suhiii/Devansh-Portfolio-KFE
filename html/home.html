@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | Devansh</title>
+  <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" />
+  <meta name="description" content="Devansh - Textile Designer Portfolio showcasing patterns, fabric designs, and fashion work.">
+  <meta name="author" content="Devansh">
+  <link rel="preload" as="image" href="../assets/images/devansh_profile.jpeg">
+
+  <!-- Canonical & Social -->
+  <link rel="canonical" href="https://devansh-portfolio.example/home" />
+  <meta property="og:title" content="Devansh | Textile Designer" />
+  <meta property="og:description" content="Textile designer crafting unique fabric stories through colors, patterns, and textures." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/images/devansh_profile.jpeg" />
+  <meta property="og:url" content="https://devansh-portfolio.example/home" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Tailwind CSS & AOS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans">
+  <!-- Preloader -->
+  <div id="preloader" class="fixed inset-0 bg-white flex items-center justify-center z-50">
+    <div class="w-12 h-12 border-4 border-blue-600 border-dashed rounded-full animate-spin" aria-label="Loading"></div>
+  </div>
+
+  <!-- Navbar -->
+  <div id="navbar"></div>
+
+  <!-- Hero Section -->
+  <section data-aos="fade-up" class="flex flex-col items-center justify-center text-center px-4 py-16 sm:py-24 md:py-32 bg-gradient-to-r from-purple-100 to-blue-100 bg-[url('https://www.transparenttextures.com/patterns/fabric-of-squares.png')] bg-repeat">
+    <img decoding="async" fetchpriority="high" src="../assets/images/devansh_profile.jpeg" alt="Portrait of textile designer Devansh" class="w-40 h-40 rounded-full mb-6 shadow-lg object-cover border-4 border-white" width="160" height="160" />
+    <h1 class="text-3xl sm:text-4xl font-extrabold mb-4">
+      <span id="typed" class="text-gray-900"></span>
+    </h1>
+    <p class="text-base sm:text-lg mb-6 max-w-xl">
+      A textile designer crafting unique fabric stories through colors, patterns, and textures. I blend hand sketches with digital mastery to bring fabric ideas to life.
+    </p>
+    <a href="portfolio.html" class="bg-blue-600 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded hover:bg-blue-700 text-sm sm:text-base">View My Designs</a>
+  </section>
+
+  <!-- Skills Section -->
+  <section data-aos="fade-up" class="bg-white py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+      <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-10">Design Skills & Tools</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+        <div>
+          <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" class="h-10 md:h-12 mx-auto mb-2" alt="Adobe Photoshop logo" width="48" height="48" />
+          <p>Adobe Photoshop</p>
+        </div>
+        <div>
+          <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" class="h-10 md:h-12 mx-auto mb-2" alt="Adobe Illustrator logo" width="48" height="48" />
+          <p>Adobe Illustrator</p>
+        </div>
+        <div>
+          <img loading="lazy" decoding="async" src="https://img.icons8.com/ios-filled/50/drawing.png" class="h-10 md:h-12 mx-auto mb-2" alt="Hand sketching icon" width="50" height="50" />
+          <p>Hand Sketching</p>
+        </div>
+        <div>
+          <img loading="lazy" decoding="async" src="https://img.icons8.com/ios-filled/50/color-dropper.png" class="h-10 md:h-12 mx-auto mb-2" alt="Color theory icon" width="50" height="50" />
+          <p>Color Theory</p>
+        </div>
+        <div>
+          <img loading="lazy" decoding="async" src="https://img.icons8.com/ios-filled/50/sewing-machine.png" class="h-10 md:h-12 mx-auto mb-2" alt="Textile CAD icon" width="50" height="50" />
+          <p>Textile CAD</p>
+        </div>
+        <div>
+          <img loading="lazy" decoding="async" src="https://img.icons8.com/ios-filled/50/needle.png" class="h-10 md:h-12 mx-auto mb-2" alt="Surface design icon" width="50" height="50" />
+          <p>Surface Design</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section data-aos="fade-up" class="bg-blue-50 py-12 sm:py-16 px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-4">Let's Collaborate</h3>
+      <p class="mb-6 text-base sm:text-lg">Looking to bring a unique textile concept to life? Let's connect and create something beautiful together.</p>
+      <a href="contact.html" class="bg-blue-600 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded hover:bg-blue-700 text-sm sm:text-base">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- Featured Designs Section -->
+  <section data-aos="fade-up" class="bg-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-8 text-center">Featured Designs</h3>
+      <div class="flex space-x-6 overflow-x-auto pb-4 snap-x snap-mandatory">
+        <div data-aos="fade-up" class="relative overflow-hidden group w-[90%] max-w-[90%] sm:max-w-[22rem] md:max-w-[26rem] lg:max-w-[30rem] xl:max-w-[34rem] mx-auto flex-shrink-0 bg-gray-100 rounded shadow-md transition-transform duration-300 transform hover:scale-105 hover:shadow-xl snap-start">
+          <button type="button" class="w-full h-full p-0 m-0 border-none bg-transparent cursor-pointer focus-visible:outline-none focus-visible:ring" aria-label="Open Design 1">
+            <img loading="lazy" decoding="async" src="../assets/images/black-and-white-shirt-print.jpg" alt="Monochrome shirt print with geometric pattern" class="w-full h-[26rem] sm:h-[30rem] md:h-[34rem] lg:h-[38rem] xl:h-[42rem] object-cover transform transition-transform duration-300 hover:scale-110 hover:rotate-1" width="800" height="1200" />
+          </button>
+          <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+            <h4 class="text-white text-xl font-semibold">Design 1</h4>
+          </div>
+        </div>
+        <div data-aos="fade-up" class="relative overflow-hidden group w-[90%] max-w-[90%] sm:max-w-[22rem] md:max-w-[26rem] lg:max-w-[30rem] xl:max-w-[34rem] mx-auto flex-shrink-0 bg-gray-100 rounded shadow-md transition-transform duration-300 transform hover:scale-105 hover:shadow-xl snap-start">
+          <button type="button" class="w-full h-full p-0 m-0 border-none bg-transparent cursor-pointer focus-visible:outline-none focus-visible:ring" aria-label="Open Design 2">
+            <img loading="lazy" decoding="async" src="../assets/images/cherry-touched-shirt.jpg" alt="Cherry pattern printed shirt in soft tones" class="w-full h-[26rem] sm:h-[30rem] md:h-[34rem] lg:h-[38rem] xl:h-[42rem] object-cover transform transition-transform duration-300 hover:scale-110 hover:rotate-1" width="800" height="1200" />
+          </button>
+          <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+            <h4 class="text-white text-xl font-semibold">Design 2</h4>
+          </div>
+        </div>
+        <div data-aos="fade-up" class="relative overflow-hidden group w-[90%] max-w-[90%] sm:max-w-[22rem] md:max-w-[26rem] lg:max-w-[30rem] xl:max-w-[34rem] mx-auto flex-shrink-0 bg-gray-100 rounded shadow-md transition-transform duration-300 transform hover:scale-105 hover:shadow-xl snap-start">
+          <button type="button" class="w-full h-full p-0 m-0 border-none bg-transparent cursor-pointer focus-visible:outline-none focus-visible:ring" aria-label="Open Design 3">
+            <img loading="lazy" decoding="async" src="../assets/images/crochette-tee.jpg" alt="Crochet-inspired tee with textured pattern" class="w-full h-[26rem] sm:h-[30rem] md:h-[34rem] lg:h-[38rem] xl:h-[42rem] object-cover transform transition-transform duration-300 hover:scale-110 hover:rotate-1" width="800" height="1200" />
+          </button>
+          <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+            <h4 class="text-white text-xl font-semibold">Design 3</h4>
+          </div>
+        </div>
+        <div data-aos="fade-up" class="relative overflow-hidden group w-[90%] max-w-[90%] sm:max-w-[22rem] md:max-w-[26rem] lg:max-w-[30rem] xl:max-w-[34rem] mx-auto flex-shrink-0 bg-gray-100 rounded shadow-md transition-transform duration-300 transform hover:scale-105 hover:shadow-xl snap-start">
+          <button type="button" class="w-full h-full p-0 m-0 border-none bg-transparent cursor-pointer focus-visible:outline-none focus-visible:ring" aria-label="Open Design 4">
+            <img loading="lazy" decoding="async" src="../assets/images/floral-red-rose-dress.jpg" alt="Floral red rose dress pattern" class="w-full h-[26rem] sm:h-[30rem] md:h-[34rem] lg:h-[38rem] xl:h-[42rem] object-cover transform transition-transform duration-300 hover:scale-110 hover:rotate-1" width="800" height="1200" />
+          </button>
+          <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+            <h4 class="text-white text-xl font-semibold">Design 4</h4>
+          </div>
+        </div>
+        <div data-aos="fade-up" class="relative overflow-hidden group w-[90%] max-w-[90%] sm:max-w-[22rem] md:max-w-[26rem] lg:max-w-[30rem] xl:max-w-[34rem] mx-auto flex-shrink-0 bg-gray-100 rounded shadow-md transition-transform duration-300 transform hover:scale-105 hover:shadow-xl snap-start">
+          <button type="button" class="w-full h-full p-0 m-0 border-none bg-transparent cursor-pointer focus-visible:outline-none focus-visible:ring" aria-label="Open Design 5">
+            <img loading="lazy" decoding="async" src="../assets/images/product-4.jpg" alt="Abstract pattern on garment" class="w-full h-[26rem] sm:h-[30rem] md:h-[34rem] lg:h-[38rem] xl:h-[42rem] object-cover transform transition-transform duration-300 hover:scale-110 hover:rotate-1" width="800" height="1200" />
+          </button>
+          <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+            <h4 class="text-white text-xl font-semibold">Design 5</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pattern Gallery Section -->
+  <section data-aos="fade-up" class="bg-gray-50 py-12 sm:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-8 text-center">Pattern Gallery</h3>
+      <div class="flex space-x-6 overflow-x-auto pb-4 snap-x snap-mandatory">
+        <div data-aos="fade-up" class="relative overflow-hidden group w-[90%] max-w-[90%] sm:max-w-[22rem] md:max-w-[26rem] lg:max-w-[30rem] xl:max-w-[34rem] mx-auto flex-shrink-0 bg-white rounded shadow-md transition-transform duration-300 transform hover:scale-105 hover:shadow-xl snap-start">
+          <button type="button" class="w-full h-full p-0 m-0 border-none bg-transparent cursor-pointer focus-visible:outline-none focus-visible:ring" aria-label="Open Pattern 1">
+            <img loading="lazy" decoding="async" src="../assets/images/black-and-white-full-print.jpg" alt="Black and white full print pattern" class="w-full h-[26rem] sm:h-[30rem] md:h-[34rem] lg:h-[38rem] xl:h-[42rem] object-cover transform transition-transform duration-300 hover:scale-110 hover:rotate-1" width="800" height="1200" />
+          </button>
+          <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+            <h4 class="text-white text-xl font-semibold">Pattern 1</h4>
+          </div>
+        </div>
+        <div data-aos="fade-up" class="relative overflow-hidden group w-[90%] max-w-[90%] sm:max-w-[22rem] md:max-w-[26rem] lg:max-w-[30rem] xl:max-w-[34rem] mx-auto flex-shrink-0 bg-white rounded shadow-md transition-transform duration-300 transform hover:scale-105 hover:shadow-xl snap-start">
+          <button type="button" class="w-full h-full p-0 m-0 border-none bg-transparent cursor-pointer focus-visible:outline-none focus-visible:ring" aria-label="Open Pattern 2">
+            <img loading="lazy" decoding="async" src="../assets/images/ABSTRACT3.png" alt="Abstract multicolor pattern" class="w-full h-[26rem] sm:h-[30rem] md:h-[34rem] lg:h-[38rem] xl:h-[42rem] object-cover transform transition-transform duration-300 hover:scale-110 hover:rotate-1" width="800" height="1200" />
+          </button>
+          <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+            <h4 class="text-white text-xl font-semibold">Pattern 2</h4>
+          </div>
+        </div>
+        <div data-aos="fade-up" class="relative overflow-hidden group w-[90%] max-w-[90%] sm:max-w-[22rem] md:max-w-[26rem] lg:max-w-[30rem] xl:max-w-[34rem] mx-auto flex-shrink-0 bg-white rounded shadow-md transition-transform duration-300 transform hover:scale-105 hover:shadow-xl snap-start">
+          <button type="button" class="w-full h-full p-0 m-0 border-none bg-transparent cursor-pointer focus-visible:outline-none focus-visible:ring" aria-label="Open Pattern 3">
+            <img loading="lazy" decoding="async" src="../assets/images/crochete.jpg" alt="Crochet pattern swatch" class="w-full h-[26rem] sm:h-[30rem] md:h-[34rem] lg:h-[38rem] xl:h-[42rem] object-cover transform transition-transform duration-300 hover:scale-110 hover:rotate-1" width="800" height="1200" />
+          </button>
+          <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+            <h4 class="text-white text-xl font-semibold">Pattern 3</h4>
+          </div>
+        </div>
+        <div data-aos="fade-up" class="relative overflow-hidden group w-[90%] max-w-[90%] sm:max-w-[22rem] md:max-w-[26rem] lg:max-w-[30rem] xl:max-w-[34rem] mx-auto flex-shrink-0 bg-white rounded shadow-md transition-transform duration-300 transform hover:scale-105 hover:shadow-xl snap-start">
+          <button type="button" class="w-full h-full p-0 m-0 border-none bg-transparent cursor-pointer focus-visible:outline-none focus-visible:ring" aria-label="Open Pattern 4">
+            <img loading="lazy" decoding="async" src="../assets/images/final-pattern.png" alt="Final seamless pattern" class="w-full h-[26rem] sm:h-[30rem] md:h-[34rem] lg:h-[38rem] xl:h-[42rem] object-cover transform transition-transform duration-300 hover:scale-110 hover:rotate-1" width="800" height="1200" />
+          </button>
+          <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+            <h4 class="text-white text-xl font-semibold">Pattern 4</h4>
+          </div>
+        </div>
+        <div data-aos="fade-up" class="relative overflow-hidden group w-[90%] max-w-[90%] sm:max-w-[22rem] md:max-w-[26rem] lg:max-w-[30rem] xl:max-w-[34rem] mx-auto flex-shrink-0 bg-white rounded shadow-md transition-transform duration-300 transform hover:scale-105 hover:shadow-xl snap-start">
+          <button type="button" class="w-full h-full p-0 m-0 border-none bg-transparent cursor-pointer focus-visible:outline-none focus-visible:ring" aria-label="Open Pattern 5">
+            <img loading="lazy" decoding="async" src="../assets/images/untitled-2.png" alt="Geometric untitled pattern" class="w-full h-[26rem] sm:h-[30rem] md:h-[34rem] lg:h-[38rem] xl:h-[42rem] object-cover transform transition-transform duration-300 hover:scale-110 hover:rotate-1" width="800" height="1200" />
+          </button>
+          <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+            <h4 class="text-white text-xl font-semibold">Pattern 5</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scroll to Top Button -->
+  <div id="scroll-top"></div>
+
+  <!-- Image Modal -->
+  <div id="image-modal"></div>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Scripts (placed at end and initialized on DOMContentLoaded) -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Preloader: hide once DOM is ready, with a 3s safety timeout
+      const preloader = document.getElementById('preloader');
+      const hidePreloader = () => { if (preloader && preloader.parentNode) preloader.remove(); };
+      hidePreloader();
+      setTimeout(hidePreloader, 3000);
+
+      // Load components
+      const inject = (id, url) => fetch(url)
+        .then(r => { if (!r.ok) throw new Error(`Failed to fetch ${url} (${r.status})`); return r.text(); })
+        .then(html => { const el = document.getElementById(id); if (el) el.innerHTML = html; })
+        .catch(err => console.error('[inject]', url, err));
+      Promise.all([
+        inject('navbar', 'components/navbar.html').then(() => {
+          // Hamburger menu toggle functionality (delegated)
+          const toggle = document.getElementById('menu-toggle');
+          const menu = document.getElementById('menu');
+          if (toggle && !toggle.hasAttribute('aria-expanded')) {
+            toggle.setAttribute('aria-expanded', 'false');
+          }
+          document.addEventListener('click', function (e) {
+            const toggle = document.getElementById('menu-toggle');
+            const menu = document.getElementById('menu');
+            if (!toggle || !menu) return;
+
+            const isToggle = (e.target === toggle || toggle.contains(e.target));
+            const clickInsideMenu = menu.contains(e.target);
+
+            if (isToggle) {
+              menu.classList.toggle('hidden');
+              const expanded = toggle.getAttribute('aria-expanded') === 'true';
+              toggle.setAttribute('aria-expanded', (!expanded).toString());
+              return;
+            }
+
+            // Outside click closes the menu
+            if (!clickInsideMenu && !menu.classList.contains('hidden')) {
+              menu.classList.add('hidden');
+              toggle.setAttribute('aria-expanded', 'false');
+              toggle.focus();
+            }
+          });
+
+          // Close on Escape key
+          document.addEventListener('keydown', function (e) {
+            if (e.key !== 'Escape') return;
+            const toggle = document.getElementById('menu-toggle');
+            const menu = document.getElementById('menu');
+            if (!toggle || !menu) return;
+            if (!menu.classList.contains('hidden')) {
+              menu.classList.add('hidden');
+              toggle.setAttribute('aria-expanded', 'false');
+              toggle.focus();
+            }
+          });
+        }),
+        inject('scroll-top', 'components/scroll-to-top.html'),
+        inject('image-modal', 'components/modal.html'),
+        inject('footer', 'components/footer.html')
+      ]).catch(() => {});
+
+      // Init AOS when script is loaded (respect reduced motion)
+      if (window.AOS) {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.AOS.init({ disable: reduceMotion });
+      }
+
+      // Init Typed.js when script is loaded (skip on small screens and reduced motion)
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const largeScreen = window.matchMedia('(min-width: 640px)').matches;
+      if (window.Typed && largeScreen && !reduceMotion) {
+        new window.Typed('#typed', {
+          strings: ["Hi, I'm Devansh", "I'm a Textile Designer", "I design prints, patterns & fabrics"],
+          typeSpeed: 60,
+          backSpeed: 30,
+          loop: true
+        });
+      }
+    });
+  </script>
+</body>
+</html>

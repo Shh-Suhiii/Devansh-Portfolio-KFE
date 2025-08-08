@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Devansh</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Edge fade hints for horizontal scroll (mobile) */
+    .fade-left, .fade-right { opacity: 0; transition: opacity 0.2s ease; }
+    .fade-left { background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0)); }
+    .fade-right { background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0)); }
+    .edge-fades.can-scroll-left .fade-left { opacity: 1; }
+    .edge-fades.can-scroll-right .fade-right { opacity: 1; }
+
+    /* Smooth scrolling + reduced motion */
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-b from-white to-blue-50 text-gray-900 font-sans min-h-screen flex flex-col">
+
+  <div id="navbar"></div>
+  <script>
+    fetch('components/navbar.html')
+      .then(res => { if (!res.ok) throw new Error('Failed to load navbar'); return res.text(); })
+      .then(html => {
+        const host = document.getElementById('navbar');
+        if (host) host.innerHTML = html;
+        // Now that the header exists in the DOM, adjust sticky offset
+        if (typeof adjustFilterOffset === 'function') adjustFilterOffset();
+      })
+      .catch(err => console.error('[navbar]', err));
+  </script>
+  <script>
+    function adjustFilterOffset() {
+      // Find header from injected navbar and the sticky filter wrapper
+      const header = document.querySelector('header');
+      const stickyWrap = document.querySelector('.edge-fades.sticky');
+      if (!stickyWrap) return;
+      const headerH = header ? header.offsetHeight : 64; // fallback
+      // Add a small gap below navbar for breathing space
+      stickyWrap.style.top = (headerH + 8) + 'px';
+    }
+    // Recalculate on resize and after fonts/layout settle
+    window.addEventListener('resize', adjustFilterOffset);
+    // Run soon after load in case navbar loads async
+    setTimeout(adjustFilterOffset, 0);
+  </script>
+
+  <!-- Preloader -->
+  <div id="preloader" class="fixed inset-0 bg-white flex items-center justify-center z-50">
+    <div class="w-12 h-12 border-4 border-blue-600 border-dashed rounded-full animate-spin"></div>
+  </div>
+  <script>
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
+      if (preloader && preloader.parentNode) preloader.remove();
+    });
+  </script>
+
+  <!-- Projects Section -->
+<main class="flex-1">
+  <section class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-20">
+    <h2
+      class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-16 text-center text-blue-800 tracking-tight leading-tight">
+      Devansh's Textile Design Portfolio</h2>
+  
+    <div id="filterWrap" class="relative edge-fades sticky top-16 z-40 -mx-4 px-4 bg-white/80 backdrop-blur supports-[backdrop-filter]:backdrop-blur mt-2 mb-12 rounded-lg shadow-sm sm:static sm:bg-transparent sm:backdrop-blur-0 sm:-mx-0 sm:px-0">
+      <!-- Prev button (mobile only) -->
+      <button type="button" id="filterPrev"
+        class="sm:hidden absolute left-1 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 shadow ring-1 ring-gray-200 grid place-items-center disabled:opacity-40 disabled:cursor-not-allowed z-10"
+        aria-label="Scroll filters left">
+        ‹
+      </button>
+
+      <div id="filterBar" class="flex flex-nowrap sm:flex-wrap justify-start sm:justify-center gap-3 sm:gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory touch-pan-x -mx-12 pl-20 pr-16" style="margin: 25px;">
+      </div>
+
+      <!-- Next button (mobile only) -->
+      <button type="button" id="filterNext"
+        class="sm:hidden absolute right-1 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 shadow ring-1 ring-gray-200 grid place-items-center disabled:opacity-40 disabled:cursor-not-allowed z-10"
+        aria-label="Scroll filters right">
+        ›
+      </button>
+
+      <div class="pointer-events-none absolute inset-y-0 left-0 w-8 fade-left sm:hidden"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 w-8 fade-right sm:hidden"></div>
+    </div>
+  
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+  
+      <!-- Project Card 1 -->
+      <div
+        class="bg-white rounded-3xl shadow-md hover:shadow-blue-300 p-6 transition-transform transform hover:scale-[1.03] hover:shadow-2xl relative"
+        data-aos="fade-up" data-aos-delay="0" data-category="minimalist geometric textileart">
+        <button
+          onclick="openGallery([
+          '../assets/images/aqua-bedsheet.jpg',
+          '../assets/images/ABSTRACT3.png',
+          '../assets/images/untitled-1.jpg'
+        ], 'Aqua Bedsheet', 'This modern bedsheet features a bold geometric design with aqua tones, triangle patterns, and digital textures—perfect for contemporary interiors.')"
+          class="w-full text-left">
+
+          <div class="relative group">
+            <img loading="lazy" src="../assets/images/aqua-bedsheet.jpg" alt="Aqua Geometric Bedsheet"
+              class="w-full h-[16rem] sm:h-[20rem] md:h-[24rem] object-cover rounded mb-4 transition-transform duration-300 group-hover:scale-105 md:filter md:grayscale md:group-hover:grayscale-0" />
+            <div
+              class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 rounded">
+              <div class="flex items-center justify-center h-full">
+                <h4
+                  class="text-white text-xl font-semibold text-center px-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                  View Gallery</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold">#Geometric</span>
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">#Modern</span>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-2 tracking-wide text-blue-900">Aqua Bedsheet</h3>
+          <p class="text-gray-700 mb-4">This modern bedsheet features a bold geometric design with aqua tones, triangle
+            patterns, and digital textures—perfect for contemporary interiors.</p>
+
+        </button>
+      </div>
+
+
+      <!-- Project Card 2 -->
+      <div
+        class="bg-white rounded-3xl shadow-md hover:shadow-blue-300 p-6 transition-transform transform hover:scale-[1.03] hover:shadow-2xl relative"
+        data-aos="fade-up" data-aos-delay="100" data-category="abstract experimental textileart">
+        <button
+          onclick="openGallery([
+          '../assets/images/black-and-white-shirt-print.jpg',
+          '../assets/images/black-and-white-full-print.jpg',
+          '../assets/images/black-and-grey.png',
+        ], 'Black & White Shirt Print', 'A modern black-and-white shirt design featuring bold circular geometric symbols—perfect for statement fashion and contemporary streetwear.')"
+          class="w-full text-left">
+
+          <div class="relative group">
+            <img loading="lazy" src="../assets/images/black-and-white-shirt-print.jpg"
+              alt="Geometric Layers textile pattern"
+              class="w-full h-[16rem] sm:h-[20rem] md:h-[24rem] object-cover rounded mb-4 transition-transform duration-300 group-hover:scale-105 md:filter md:grayscale md:group-hover:grayscale-0" />
+            <div
+              class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 rounded">
+              <div class="flex items-center justify-center h-full">
+                <h4
+                  class="text-white text-xl font-semibold text-center px-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                  View Gallery</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">#Abstract</span>
+            <span
+              class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold">#Experimental</span>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-2 tracking-wide text-blue-900">Black & White Shirt Print</h3>
+          <p class="text-gray-700 mb-4">A modern black-and-white shirt design featuring bold circular geometric
+            symbols—perfect for statement fashion and contemporary streetwear.</p>
+
+        </button>
+      </div>
+
+
+      <!-- Project Card 3 -->
+      <div
+        class="bg-white rounded-3xl shadow-md hover:shadow-blue-300 p-6 transition-transform transform hover:scale-[1.03] hover:shadow-2xl relative"
+        data-aos="fade-up" data-aos-delay="200" data-category="folkart tieanddye knotting">
+        <button
+          onclick="openGallery([
+          '../assets/images/carpet-purple.jpg',
+          '../assets/images/carpet-flower-repeat.jpg',
+          '../assets/images/second-pattern-floral.png',
+        ], 'Purple Carpet', 'A luxurious carpet design featuring bold purple floral motifs overlaid on a soft geometric background—blending ethnic elegance with modern interior aesthetics.')"
+          class="w-full text-left">
+
+          <div class="relative group">
+            <img loading="lazy" src="../assets/images/carpet-purple.jpg" alt="Purple Floral Carpet Design"
+              class="w-full h-[16rem] sm:h-[20rem] md:h-[24rem] object-cover rounded mb-4 transition-transform duration-300 group-hover:scale-105 md:filter md:grayscale md:group-hover:grayscale-0" />
+            <div
+              class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 rounded">
+              <div class="flex items-center justify-center h-full">
+                <h4
+                  class="text-white text-xl font-semibold text-center px-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                  View Gallery</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-semibold">#FolkArt</span>
+            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold">#Tie &amp; Dye</span>
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">#Knotting</span>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-2 tracking-wide text-blue-900">Purple Carpet</h3>
+          <p class="text-gray-700 mb-4">A luxurious carpet design featuring bold purple floral motifs overlaid on a soft
+            geometric background—blending ethnic elegance with modern interior aesthetics.</p>
+        </button>
+      </div>
+
+      <!-- Project Card 4 -->
+      <div
+        class="bg-white rounded-3xl shadow-md hover:shadow-blue-300 p-6 transition-transform transform hover:scale-[1.03] hover:shadow-2xl relative"
+        data-aos="fade-up" data-aos-delay="200" data-category="floral experimental contemporary textileart">
+        <button
+          onclick="openGallery([
+                '../assets/images/experimental-mockup.jpg',
+                '../assets/images/final-pattern.png',
+                '../assets/images/floral-1st.png',
+              ], 'Experimental Floral Mockup', 'A contemporary floral print designed for asymmetrical fashion silhouettes—featuring oversized hand-drawn blooms with a playful botanical mix on soft off-white fabric.')"
+          class="w-full text-left">
+
+          <div class="relative group">
+            <img loading="lazy" src="../assets/images/experimental-mockup.jpg" alt="Experimental Floral Dress Design"
+              class="w-full h-[16rem] sm:h-[20rem] md:h-[24rem] object-cover rounded mb-4 transition-transform duration-300 group-hover:scale-105 md:filter md:grayscale md:group-hover:grayscale-0" />
+            <div
+              class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 rounded">
+              <div class="flex items-center justify-center h-full">
+                <h4
+                  class="text-white text-xl font-semibold text-center px-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                  View Gallery</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-xs font-semibold">#Floral</span>
+            <span
+              class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-semibold">#Experimental</span>
+            <span
+              class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold">#Contemporary</span>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-2 tracking-wide text-blue-900">Experimental Floral Mockup</h3>
+          <p class="text-gray-700 mb-4">A contemporary floral print designed for asymmetrical fashion
+            silhouettes—featuring oversized hand-drawn blooms with a playful botanical mix on soft off-white fabric.</p>
+        </button>
+      </div>
+
+      <!-- Project Card 5 -->
+      <div
+        class="bg-white rounded-3xl shadow-md hover:shadow-blue-300 p-6 transition-transform transform hover:scale-[1.03] hover:shadow-2xl relative"
+        data-aos="fade-up" data-aos-delay="200" data-category="floral romantic vintage textileart">
+        <button
+          onclick="openGallery([
+                            '../assets/images/floral-red-rose-dress.jpg',
+                            '../assets/images/Untitled-2.png',
+                          ], 'Floral Red Rose Dress', 'A romantic red rose print dress with a gradient transition from ivory to black—combining vintage charm with bold floral elegance, ideal for evening wear and modern classics.')"
+          class="w-full text-left">
+
+          <div class="relative group">
+            <img loading="lazy" src="../assets/images/floral-red-rose-dress.jpg" alt="Floral Red Rose Dress Design"
+              class="w-full h-[16rem] sm:h-[20rem] md:h-[24rem] object-cover rounded mb-4 transition-transform duration-300 group-hover:scale-105 md:filter md:grayscale md:group-hover:grayscale-0" />
+            <div
+              class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 rounded">
+              <div class="flex items-center justify-center h-full">
+                <h4
+                  class="text-white text-xl font-semibold text-center px-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                  View Gallery</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-semibold">#Floral</span>
+            <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-xs font-semibold">#Romantic</span>
+            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">#Vintage</span>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-2 tracking-wide text-blue-900">Floral Red Rose Dress</h3>
+          <p class="text-gray-700 mb-4">A romantic red rose print dress with a gradient transition from ivory to
+            black—combining vintage charm with bold floral elegance, ideal for evening wear and modern classics.</p>
+        </button>
+      </div>
+
+      <!-- Project Card 6 -->
+      <div
+        class="bg-white rounded-3xl shadow-md hover:shadow-blue-300 p-6 transition-transform transform hover:scale-[1.03] hover:shadow-2xl relative"
+        data-aos="fade-up" data-aos-delay="200" data-category="folkart tribal wallart handcrafted textileart">
+        <button
+          onclick="openGallery([
+    '../assets/images/fish.jpg',
+    '../assets/images/complete-pattern.png',
+  ], 'Folk Fish Wall Art', 'A digitally illustrated folk-inspired fish motif, framed with intricate tribal patterns and bold colors—perfect for modern interiors with an ethnic twist.')"
+          class="w-full text-left">
+
+          <div class="relative group">
+            <img loading="lazy" src="../assets/images/complete-pattern.png" alt="Folk Fish Pattern Design"
+              class="w-full h-[16rem] sm:h-[20rem] md:h-[24rem] object-cover rounded mb-4 transition-transform duration-300 group-hover:scale-105 md:filter md:grayscale md:group-hover:grayscale-0" />
+            <div
+              class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 rounded">
+              <div class="flex items-center justify-center h-full">
+                <h4
+                  class="text-white text-xl font-semibold text-center px-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                  View Gallery</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs font-semibold">#FolkArt</span>
+            <span class="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-xs font-semibold">#Tribal</span>
+            <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">#WallArt</span>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-2 tracking-wide text-blue-900">Folk Fish Wall Art</h3>
+          <p class="text-gray-700 mb-4">A digitally illustrated folk-inspired fish motif, framed with intricate tribal
+            patterns and bold colors—perfect for modern interiors with an ethnic twist.</p>
+        </button>
+      </div>
+
+      <!-- Project Card 7 -->
+      <div
+        class="bg-white rounded-3xl shadow-md hover:shadow-blue-300 p-6 transition-transform transform hover:scale-[1.03] hover:shadow-2xl relative"
+        data-aos="fade-up" data-aos-delay="200" data-category="folkart pichwai ethnicwear handcrafted textileart">
+        <button
+          onclick="openGallery([
+                '../assets/images/KURTA-PICHWAI-ART.png',
+                '../assets/images/lotus-kurta.png',
+                '../assets/images/kurta-cow.png',
+              ], 'Kurta Pichwai Art', 'A traditional menswear kurta featuring digitally rendered Pichwai art with sacred cow motifs and blooming lotuses—blending heritage storytelling with wearable textile design.')"
+          class="w-full text-left">
+
+          <div class="relative group">
+            <img loading="lazy" src="../assets/images/KURTA-PICHWAI-ART.png" alt="Kurta with Pichwai Cow and Lotus Art"
+              class="w-full h-[16rem] sm:h-[20rem] md:h-[24rem] object-cover rounded mb-4 transition-transform duration-300 group-hover:scale-105 md:filter md:grayscale md:group-hover:grayscale-0" />
+            <div
+              class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 rounded">
+              <div class="flex items-center justify-center h-full">
+                <h4
+                  class="text-white text-xl font-semibold text-center px-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                  View Gallery</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold">#FolkArt</span>
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">#Pichwai</span>
+            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-semibold">#EthnicWear</span>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-2 tracking-wide text-blue-900">Kurta Pichwai Art</h3>
+          <p class="text-gray-700 mb-4">A traditional menswear kurta featuring digitally rendered Pichwai art with
+            sacred cow motifs and blooming lotuses—blending heritage storytelling with wearable textile design.</p>
+        </button>
+      </div>
+
+      <!-- Project Card 8 -->
+      <div
+        class="bg-white rounded-3xl shadow-md hover:shadow-blue-300 p-6 transition-transform transform hover:scale-[1.03] hover:shadow-2xl relative"
+        data-aos="fade-up" data-aos-delay="200" data-category="minimalist nature inspiredwear">
+        <button
+          onclick="openGallery([
+                '../assets/images/cherry-touched-shirt.jpg',
+                '../assets/images/untouched-cherry.jpg',
+                '../assets/images/touched.png',
+              ], 'Cherry Touched Shirt', 'A contemporary white shirt design touched with hand-drawn cherry motifs and flowing green lines—merging organic elements with structured fashion for everyday elegance.')"
+          class="w-full text-left">
+
+          <div class="relative group">
+            <img loading="lazy" src="../assets/images/cherry-touched-shirt.jpg"
+              alt="White shirt with cherry and vine print design"
+              class="w-full h-[16rem] sm:h-[20rem] md:h-[24rem] object-cover rounded mb-4 transition-transform duration-300 group-hover:scale-105 md:filter md:grayscale md:group-hover:grayscale-0" />
+            <div
+              class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 rounded">
+              <div class="flex items-center justify-center h-full">
+                <h4
+                  class="text-white text-xl font-semibold text-center px-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                  View Gallery</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">#Minimalist</span>
+            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-semibold">#Nature</span>
+            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold">#InspiredWear</span>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-2 tracking-wide text-blue-900">Cherry Touched Shirt</h3>
+          <p class="text-gray-700 mb-4">A contemporary white shirt design touched with hand-drawn cherry motifs and
+            flowing green lines—merging organic elements with structured fashion for everyday elegance.</p>
+        </button>
+      </div>
+
+      <!-- Project Card 9 -->
+      <div
+        class="bg-white rounded-3xl shadow-md hover:shadow-blue-300 p-6 transition-transform transform hover:scale-[1.03] hover:shadow-2xl relative"
+        data-aos="fade-up" data-aos-delay="200" data-category="textileart crochet abstractwear handcrafted">
+        <button
+          onclick="openGallery([
+                            '../assets/images/crochette-tee.jpg',
+                            '../assets/images/crochete.jpg',
+                          ], 'Crochette T-Shirt', 'A cozy crochet-knit tee featuring abstract embroidery in earthy tones—where handcrafted texture meets minimal contemporary fashion with a pocket detail and artful base design.')"
+          class="w-full text-left">
+
+          <div class="relative group">
+            <img loading="lazy" src="../assets/images/crochette-tee.jpg"
+              alt="Crochette t-shirt with abstract embroidered details"
+              class="w-full h-[16rem] sm:h-[20rem] md:h-[24rem] object-cover rounded mb-4 transition-transform duration-300 group-hover:scale-105 md:filter md:grayscale md:group-hover:grayscale-0" />
+            <div
+              class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 rounded">
+              <div class="flex items-center justify-center h-full">
+                <h4
+                  class="text-white text-xl font-semibold text-center px-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                  View Gallery</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold">#TextileArt</span>
+            <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-semibold">#Crochet</span>
+            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold">#AbstractWear</span>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-2 tracking-wide text-blue-900">Crochette T-Shirt</h3>
+          <p class="text-gray-700 mb-4">A cozy crochet-knit tee featuring abstract embroidery in earthy tones—where
+            handcrafted texture meets minimal contemporary fashion with a pocket detail and artful base design.</p>
+        </button>
+      </div>
+
+      <!-- Project Card 10 -->
+      <div
+        class="bg-white rounded-3xl shadow-md hover:shadow-blue-300 p-6 transition-transform transform hover:scale-[1.03] hover:shadow-2xl relative"
+        data-aos="fade-up" data-aos-delay="200" data-category="minimalist floral textileart">
+        <button
+          onclick="openGallery([
+                '../assets/images/product-4.jpg',
+                '../assets/images/untitled-4.jpg',
+                '../assets/images/MINIALISM.png',
+              ], 'Minimalist Floral Vest', 'A clean and structured vest design featuring soft beige floral prints over a subtle grid pattern—perfect for minimalists who value symmetry, elegance, and calm visual storytelling.')"
+          class="w-full text-left">
+
+          <div class="relative group">
+            <img loading="lazy" src="../assets/images/product-4.jpg" alt="Minimalist floral vest with grid background"
+              class="w-full h-[16rem] sm:h-[20rem] md:h-[24rem] object-cover rounded mb-4 transition-transform duration-300 group-hover:scale-105 md:filter md:grayscale md:group-hover:grayscale-0" />
+            <div
+              class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 rounded">
+              <div class="flex items-center justify-center h-full">
+                <h4
+                  class="text-white text-xl font-semibold text-center px-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                  View Gallery</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold">#Minimalist</span>
+            <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs font-semibold">#Floral</span>
+            <span class="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-xs font-semibold">#TextileArt</span>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-2 tracking-wide text-blue-900">Minimalist Floral Vest</h3>
+          <p class="text-gray-700 mb-4">A clean and structured vest design featuring soft beige floral prints over a
+            subtle grid pattern—perfect for minimalists who value symmetry, elegance, and calm visual storytelling.</p>
+        </button>
+      </div>
+
+
+      <!-- Project Card 11 -->
+      <div
+        class="bg-white rounded-3xl shadow-md hover:shadow-blue-300 p-6 transition-transform transform hover:scale-[1.03] hover:shadow-2xl relative"
+        data-aos="fade-up" data-aos-delay="200" data-category="nature inspired textilepattern textileart">
+        <button
+          onclick="openGallery([
+                '../assets/images/bee-purple.jpg',
+                '../assets/images/untitled-3.jpg',
+                '../assets/images/third-floral-motif.png',
+              ], 'Botanical Bee Harmony', 'An intricately detailed surface repeat pattern featuring hand-illustrated bees and vivid purple floral elements—balanced within structured outlines. This piece brings together the softness of nature with the precision of pattern symmetry.')"
+          class="w-full text-left">
+
+          <div class="relative group">
+            <img loading="lazy" src="../assets/images/bee-purple.jpg" alt="Botanical bee and floral surface pattern"
+              class="w-full h-[16rem] sm:h-[20rem] md:h-[24rem] object-cover rounded mb-4 transition-transform duration-300 group-hover:scale-105 md:filter md:grayscale md:group-hover:grayscale-0" />
+            <div
+              class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 rounded">
+              <div class="flex items-center justify-center h-full">
+                <h4
+                  class="text-white text-xl font-semibold text-center px-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                  View Gallery</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">#Nature</span>
+            <span
+              class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-semibold">#SurfacePattern</span>
+            <span
+              class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold">#Illustration</span>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-2 tracking-wide text-blue-900">Botanical Bee Harmony</h3>
+          <p class="text-gray-700 mb-4">An intricately detailed surface repeat pattern featuring hand-illustrated bees
+            and vivid purple floral elements—balanced within structured outlines. This piece brings together the
+            softness of nature with the precision of pattern symmetry.</p>
+        </button>
+      </div>
+
+      <!-- Project Card 12 -->
+      <div
+        class="bg-white rounded-3xl shadow-md hover:shadow-blue-300 p-6 transition-transform transform hover:scale-[1.03] hover:shadow-2xl relative"
+        data-aos="fade-up" data-aos-delay="200" data-category="knotting handcrafted textileart">
+        <button
+          onclick="openGallery([
+                          '../assets/images/knotting1.jpg',
+                          '../assets/images/knotting2.jpg',
+                          '../assets/images/knotting3.jpg',
+                          '../assets/images/knotting5.jpg',
+                          '../assets/images/knotting6.jpg',
+                        ], 'Knottings', 'A diverse collection of knotting techniques, featuring functional and decorative applications in textile art. From tightly woven patterns and repetitive loop structures to vibrant handcrafted bags, this series showcases the versatility and beauty of knotting as both craft and design.')"
+          class="w-full text-left">
+
+          <div class="relative group">
+            <img loading="lazy" src="../assets/images/knotting6.jpg" alt="Knotted textile handbag and pattern samples"
+              class="w-full h-[16rem] sm:h-[20rem] md:h-[24rem] object-cover rounded mb-4 transition-transform duration-300 group-hover:scale-105 md:filter md:grayscale md:group-hover:grayscale-0" />
+            <div
+              class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 rounded">
+              <div class="flex items-center justify-center h-full">
+                <h4
+                  class="text-white text-xl font-semibold text-center px-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                  View Gallery</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">#TextileArt</span>
+            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-semibold">#Knotting</span>
+            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold">#CraftDesign</span>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-2 tracking-wide text-blue-900">Knottings</h3>
+          <p class="text-gray-700 mb-4">A diverse collection of knotting techniques, featuring functional and decorative
+            applications in textile art. From tightly woven patterns and repetitive loop structures to vibrant
+            handcrafted
+            bags, this series showcases the versatility and beauty of knotting as both craft and design.</p>
+        </button>
+      </div>
+
+
+      <!-- Project Card 13 -->
+      <div
+        class="bg-white rounded-3xl shadow-md hover:shadow-blue-300 p-6 transition-transform transform hover:scale-[1.03] hover:shadow-2xl relative"
+        data-aos="fade-up" data-aos-delay="200" data-category="handpainted denim fashion handcrafted textileart">
+        <button
+          onclick="openGallery([
+              '../assets/images/blue1.jpeg',
+              '../assets/images/blue2.jpg',
+              '../assets/images/blue4.jpg',
+            ], 'Painted Denim Jackets', 'A hand-painted denim collection that fuses fashion with expressive art. Featuring bold floral brushstrokes and celestial white motifs, these pieces celebrate individuality and wearable storytelling.')"
+          class="w-full text-left">
+
+          <div class="relative group">
+            <img loading="lazy" src="../assets/images/blue1.jpeg" alt="Hand-painted floral on denim jacket"
+              class="w-full h-[16rem] sm:h-[20rem] md:h-[24rem] object-cover rounded mb-4 transition-transform duration-300 group-hover:scale-105 filter grayscale group-hover:grayscale-0" />
+            <div
+              class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 rounded">
+              <div class="flex items-center justify-center h-full">
+                <h4
+                  class="text-white text-xl font-semibold text-center px-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                  View Gallery</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-semibold">#DenimArt</span>
+            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-semibold">#HandPainted</span>
+            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold">#FashionDesign</span>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-2 tracking-wide text-blue-900">Painted Denim Jackets</h3>
+          <p class="text-gray-700 mb-4">A hand-painted denim collection that fuses fashion with expressive art.
+            Featuring bold floral brushstrokes and celestial white motifs, these pieces celebrate individuality and
+            wearable storytelling.</p>
+        </button>
+      </div>
+
+
+      <!-- Project Card 14 -->
+      <div
+      class="bg-white rounded-3xl shadow-md hover:shadow-blue-300 p-6 transition-transform transform hover:scale-[1.03] hover:shadow-2xl relative"
+      data-aos="fade-up" data-aos-delay="200" data-category="textile dyeing tieanddye handcrafted textileart">
+      <button
+        onclick="openGallery([
+            '../assets/images/tie-dye.jpg',
+          ], 'Tie & Dye Saree', 'An elegant handmade saree crafted using the traditional tie-dye technique. The flowing maroon and peach tones create a graceful contrast, showcasing the artistry of natural fabric manipulation and dye craftsmanship.')"
+        class="w-full text-left">
+    
+        <div class="relative group">
+          <img loading="lazy" src="../assets/images/tie-dye.jpg" alt="Tie-dye saree on mannequin"
+            class="w-full h-[16rem] sm:h-[20rem] md:h-[24rem] object-cover rounded mb-4 transition-transform duration-300 group-hover:scale-105 md:filter md:grayscale md:group-hover:grayscale-0" />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 rounded">
+            <div class="flex items-center justify-center h-full">
+              <h4
+                class="text-white text-xl font-semibold text-center px-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                View Gallery</h4>
+            </div>
+          </div>
+        </div>
+    
+        <div class="flex flex-wrap gap-2 mb-3">
+          <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-xs font-semibold">#TieDye</span>
+          <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-semibold">#SareeDesign</span>
+          <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold">#TextileCraft</span>
+        </div>
+    
+        <h3 class="text-xl font-semibold mb-2 tracking-wide text-blue-900">Tie & Dye Saree</h3>
+        <p class="text-gray-700 mb-4">
+          An elegant handmade saree crafted using the traditional tie-dye technique. The flowing maroon and peach tones
+          create a graceful contrast, showcasing the artistry of natural fabric manipulation and dye craftsmanship.
+        </p>
+      </button>
+    </div>
+    
+
+      <!-- Project Card 15 -->
+      <div
+      class="bg-white rounded-3xl shadow-md hover:shadow-blue-300 p-6 transition-transform transform hover:scale-[1.03] hover:shadow-2xl relative"
+      data-aos="fade-up" data-aos-delay="200" data-category="handpainted wearable art handcrafted textileart">
+      <button
+        onclick="openGallery([
+                    '../assets/images/peacock.png',
+                    '../assets/images/spider1.png',
+                    '../assets/images/spider2.png',
+                    '../assets/images/orange1.png',
+                    '../assets/images/orange2.jpg',
+                  ], 'Wearable Art Series', 'A bold collection of hand-painted shirts and kurtas inspired by nature, animals, and minimalism. From elegant peacocks and vibrant ducks to striking spider motifs, each design reflects unique storytelling through fashion.')"
+        class="w-full text-left">
+    
+        <div class="relative group">
+          <img loading="lazy" src="../assets/images/spider2.png" alt="Hand-painted spider shirt"
+            class="w-full h-[16rem] sm:h-[20rem] md:h-[24rem] object-cover rounded mb-4 transition-transform duration-300 group-hover:scale-105 md:filter md:grayscale md:group-hover:grayscale-0" />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 rounded">
+            <div class="flex items-center justify-center h-full">
+              <h4
+                class="text-white text-xl font-semibold text-center px-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                View Gallery</h4>
+            </div>
+          </div>
+        </div>
+    
+        <div class="flex flex-wrap gap-2 mb-3">
+          <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-semibold">#WearableArt</span>
+          <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">#HandPainted</span>
+          <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold">#NatureInspired</span>
+        </div>
+    
+        <h3 class="text-xl font-semibold mb-2 tracking-wide text-blue-900">Wearable Art Series</h3>
+        <p class="text-gray-700 mb-4">
+          A bold collection of hand-painted shirts and kurtas inspired by nature, animals, and minimalism. From elegant
+          peacocks and vibrant ducks to striking spider motifs, each design reflects unique storytelling through fashion.
+        </p>
+      </button>
+    </div>
+    
+
+
+
+
+
+
+
+      </div>
+      <section
+        class="text-center w-full py-16 px-4 sm:px-6 md:px-10 mt-20 md:mt-28 mb-20 md:mb-28 bg-gradient-to-br from-blue-50 to-white rounded-3xl shadow-lg max-w-6xl mx-auto border border-blue-100"
+        data-aos="fade-up">
+        <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-800 mb-6 tracking-tight">Interested in Custom
+          Designs?</h3>
+        <p class="mb-8 text-lg text-gray-700">Let’s collaborate on your next textile project. I specialize in patterns,
+          motifs, and unique fabric styles.</p>
+        <a href="contact.html"
+          class="bg-blue-700 text-white px-6 py-2 sm:px-8 sm:py-3 rounded-full text-base sm:text-lg font-semibold hover:bg-blue-800 transition">Contact
+          Me</a>
+      </section>
+
+      <!-- Modal Gallery -->
+      <div id="galleryModal"
+        class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden transition-all duration-500 ease-in-out backdrop-blur-md opacity-0 pointer-events-none px-4"
+        role="dialog" aria-modal="true" aria-labelledby="galleryTitle" aria-describedby="galleryDescription" tabindex="-1">
+        <div
+          class="bg-white rounded-2xl w-full max-w-4xl relative p-4 sm:p-6 md:p-10 shadow-2xl flex flex-col items-center justify-center space-y-6">
+          <button onclick="closeGallery()" aria-label="Close gallery"
+            class="absolute top-3 right-5 text-3xl text-gray-400 hover:text-red-600 transition-transform transform hover:scale-125">&times;</button>
+          <div id="galleryImages" class="relative w-full flex items-center justify-center">
+            <div class="relative w-full flex items-center justify-center">
+              <img id="galleryImage" src=""
+                class="max-h-[60vh] sm:max-h-[70vh] max-w-full object-cover rounded-xl shadow-2xl border border-gray-200 opacity-0 transition-opacity duration-500 ease-in-out" />
+            </div>
+          </div>
+          <div id="galleryDots" class="flex justify-center items-center gap-3 mt-4 mb-2"></div>
+          <hr class="my-6 border-gray-200" />
+          <div class="text-center">
+            <h3 id="galleryTitle" class="text-2xl sm:text-3xl font-bold mb-2 text-blue-800 text-center"></h3>
+            <p id="galleryDescription" class="text-gray-600 text-base leading-relaxed text-center max-w-2xl mx-auto">
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        let galleryImages = [];
+        let currentImageIndex = 0;
+        let lastFocusedElement = null;
+
+        function openGallery(images, title, desc) {
+          lastFocusedElement = document.activeElement;
+          galleryImages = images;
+          currentImageIndex = 0;
+          const galleryImage = document.getElementById('galleryImage');
+          galleryImage.classList.remove('opacity-100');
+          galleryImage.classList.add('opacity-0');
+          galleryImage.src = galleryImages[currentImageIndex];
+          setTimeout(() => {
+            galleryImage.classList.remove('opacity-0');
+            galleryImage.classList.add('opacity-100');
+          }, 50);
+          document.getElementById('galleryTitle').textContent = title;
+          document.getElementById('galleryDescription').textContent = desc;
+          const modal = document.getElementById('galleryModal');
+          modal.classList.remove('hidden');
+          modal.classList.remove('opacity-0', 'pointer-events-none');
+          modal.classList.add('opacity-100');
+          // Focus the close button as first focusable element
+          const closeBtn = modal.querySelector('button[aria-label="Close gallery"]');
+          if (closeBtn) closeBtn.focus();
+          renderDots(); // dynamically create dots
+          updateDots();
+        }
+
+        function renderDots() {
+          const dotContainer = document.getElementById('galleryDots');
+          if (!dotContainer) return;
+          dotContainer.innerHTML = '';
+          galleryImages.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.className = 'gallery-dot w-4 h-4 rounded-full cursor-pointer transition-transform duration-300 border-2 border-white hover:scale-125 transform';
+            dot.style.opacity = '0.6';
+            dot.style.backgroundColor = i === currentImageIndex ? '#2563EB' : '#D1D5DB';
+            dot.onclick = () => goToImage(i);
+            dot.setAttribute("tabindex", "0");
+            dot.setAttribute("aria-label", `Go to image ${i + 1}`);
+            dotContainer.appendChild(dot);
+          });
+        }
+
+        function closeGallery() {
+          const modal = document.getElementById('galleryModal');
+          modal.classList.remove('opacity-100');
+          modal.classList.add('opacity-0', 'pointer-events-none');
+          setTimeout(() => {
+            modal.classList.add('hidden');
+            if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+              lastFocusedElement.focus();
+            }
+          }, 300);
+        }
+
+        function nextImage() {
+          currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+          const galleryImage = document.getElementById('galleryImage');
+          galleryImage.classList.remove('opacity-100');
+          galleryImage.classList.add('opacity-0');
+          galleryImage.src = galleryImages[currentImageIndex];
+          setTimeout(() => {
+            galleryImage.classList.remove('opacity-0');
+            galleryImage.classList.add('opacity-100');
+          }, 50);
+          updateDots();
+        }
+
+        function prevImage() {
+          currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+          const galleryImage = document.getElementById('galleryImage');
+          galleryImage.classList.remove('opacity-100');
+          galleryImage.classList.add('opacity-0');
+          galleryImage.src = galleryImages[currentImageIndex];
+          setTimeout(() => {
+            galleryImage.classList.remove('opacity-0');
+            galleryImage.classList.add('opacity-100');
+          }, 50);
+          updateDots();
+        }
+
+        function goToImage(index) {
+          if (index >= 0 && index < galleryImages.length) {
+            currentImageIndex = index;
+            const galleryImage = document.getElementById('galleryImage');
+            galleryImage.classList.remove('opacity-100');
+            galleryImage.classList.add('opacity-0');
+            galleryImage.src = galleryImages[currentImageIndex];
+            setTimeout(() => {
+              galleryImage.classList.remove('opacity-0');
+              galleryImage.classList.add('opacity-100');
+            }, 50);
+            updateDots();
+          }
+        }
+
+        function updateDots() {
+          const dots = document.querySelectorAll('.gallery-dot');
+          dots.forEach((dot, i) => {
+            dot.style.backgroundColor = i === currentImageIndex ? '#2563EB' : '#D1D5DB';
+            dot.style.opacity = i === currentImageIndex ? '1' : '0.6';
+            if (i === currentImageIndex) {
+              dot.style.transform = 'scale(1.2)';
+            } else {
+              dot.style.transform = 'scale(1)';
+            }
+          });
+        }
+
+        function filterProjects(category) {
+          const cards = document.querySelectorAll('[data-category]');
+          cards.forEach(card => {
+            if (category === 'all' || card.dataset.category.toLowerCase().includes(category.toLowerCase())) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        }
+
+        // --- Active Filter Highlight ---
+        // Center the active chip within the scroll area (mobile)
+        function scrollActiveChipIntoView(activeKey) {
+          const bar = document.getElementById('filterBar');
+          if (!bar) return;
+
+          // For "All", force hard-left instead of centering
+          if (activeKey === 'all') {
+            bar.scrollTo({ left: 0, behavior: 'smooth' });
+            return;
+          }
+
+          const btn = bar.querySelector(`.filter-btn[data-filter="${activeKey}"]`);
+          if (!btn) return;
+          const target = btn.offsetLeft + (btn.offsetWidth / 2) - (bar.clientWidth / 2);
+          const left = Math.max(0, Math.min(target, bar.scrollWidth - bar.clientWidth));
+          bar.scrollTo({ left, behavior: 'smooth' });
+        }
+
+        function setActiveFilter(activeKey) {
+          const buttons = document.querySelectorAll('#filterBar .filter-btn');
+          buttons.forEach(btn => {
+            const key = btn.getAttribute('data-filter');
+            // reset to inactive state
+            btn.classList.remove('bg-blue-600','text-white','hover:bg-blue-700');
+            btn.classList.add('bg-gray-200','text-gray-800','hover:bg-blue-600','hover:text-white');
+            btn.setAttribute('aria-pressed', 'false');
+            // activate selected
+            if (key === activeKey) {
+              btn.classList.remove('bg-gray-200','text-gray-800','hover:text-white','hover:bg-blue-600');
+              btn.classList.add('bg-blue-600','text-white','hover:bg-blue-700');
+              btn.setAttribute('aria-pressed', 'true');
+            }
+          });
+          scrollActiveChipIntoView(activeKey);
+        }
+
+        // --- Dynamic Filter Bar ---
+        function buildFilterBar() {
+          const bar = document.getElementById('filterBar');
+          if (!bar) return;
+
+          // Allowed top-level filters to keep UI tidy
+          const allowed = new Set(['minimalist', 'textileart', 'tieanddye', 'experimental', 'knotting', 'handcrafted']);
+          const counts = { all: 0, minimalist: 0, textileart: 0, tieanddye: 0, experimental: 0, knotting: 0, handcrafted: 0 };
+
+          // Collect categories from cards
+          const cards = Array.from(document.querySelectorAll('[data-category]'));
+          const found = new Set();
+          counts.all = cards.length;
+          cards.forEach(card => {
+            const cats = (card.dataset.category || '').toLowerCase().split(/\s+/).filter(Boolean);
+            const uniqueCats = Array.from(new Set(cats));
+            uniqueCats.forEach(c => {
+              if (allowed.has(c)) {
+                found.add(c);
+                counts[c] = (counts[c] || 0) + 1;
+              }
+            });
+          });
+
+          // Helper to make a button (with count and data-filter)
+          const makeBtn = (label, key, count, isPrimary=false) => {
+            const btn = document.createElement('button');
+            btn.className = isPrimary
+              ? 'filter-btn whitespace-nowrap snap-start bg-blue-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-blue-700 transition hover:shadow-md hover:ring-2 hover:ring-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400'
+              : 'filter-btn whitespace-nowrap snap-start bg-gray-200 text-gray-800 px-4 py-2 rounded-full font-semibold hover:bg-blue-600 hover:text-white transition hover:shadow-md hover:ring-2 hover:ring-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400';
+            btn.textContent = count != null ? `${label} (${count})` : label;
+            btn.setAttribute('data-filter', key);
+            btn.setAttribute('aria-pressed', isPrimary ? 'true' : 'false');
+            btn.setAttribute('aria-label', `Filter by ${label}${count != null ? `, ${count} items` : ''}`);
+            btn.addEventListener('click', () => { filterProjects(key); setActiveFilter(key); });
+            return btn;
+          };
+
+          // Clear any existing content (if re-run)
+          bar.innerHTML = '';
+          // Insert the spacer at the start (mobile only)
+          const spacer = document.createElement('div');
+          spacer.className = 'w-12 flex-shrink-0 sm:hidden';
+          bar.appendChild(spacer);
+
+          // Always add "All"
+          bar.appendChild(makeBtn('All', 'all', counts.all, true));
+
+          // Add buttons in a preferred display order
+          const preferredOrder = ['minimalist', 'textileart', 'tieanddye', 'experimental', 'knotting', 'handcrafted'];
+          preferredOrder.forEach(key => {
+            if (found.has(key)) {
+              const labelMap = {
+                minimalist: 'Minimalist',
+                textileart: 'Textile Art',
+                tieanddye: 'Tie &\u00A0Dye',
+                experimental: 'Experimental',
+                knotting: 'Knotting',
+                handcrafted: 'Handcrafted'
+              };
+              bar.appendChild(makeBtn(labelMap[key] || key, key, counts[key] || 0));
+            }
+          });
+          // Start scrolled hard-left, then set "All" active
+          const barEl = document.getElementById('filterBar');
+          if (barEl) {
+            barEl.scrollTo({ left: 0, behavior: 'auto' });
+            barEl.dispatchEvent(new Event('scroll'));
+          }
+          setActiveFilter('all'); // now keeps it left due to the special-case above
+        }
+
+        // Build the filter bar on DOM ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', buildFilterBar);
+        } else {
+          buildFilterBar();
+        }
+        // --- End Dynamic Filter Bar ---
+
+        // --- Edge Fade Hints for Mobile Filter Bar ---
+        (function initFilterFades(){
+          const bar = document.getElementById('filterBar');
+          if (!bar || !bar.parentElement) return;
+          const wrap = bar.parentElement;
+          const prev = document.getElementById('filterPrev');
+          const next = document.getElementById('filterNext');
+
+          const updateFades = () => {
+            const max = Math.max(0, bar.scrollWidth - bar.clientWidth);
+            const l = Math.max(0, Math.min(bar.scrollLeft, max));
+            wrap.classList.toggle('can-scroll-left', l > 0);
+            wrap.classList.toggle('can-scroll-right', l < max - 1);
+            if (prev) prev.disabled = !(l > 0);
+            if (next) next.disabled = !(l < max - 1);
+          };
+
+          const scrollStep = (dir) => {
+            const amount = Math.max(80, Math.floor(bar.clientWidth * 0.8));
+            bar.scrollBy({ left: dir * amount, behavior: 'smooth' });
+          };
+
+          if (prev) prev.addEventListener('click', () => scrollStep(-1));
+          if (next) next.addEventListener('click', () => scrollStep(1));
+
+          bar.addEventListener('scroll', updateFades, { passive: true });
+          window.addEventListener('resize', updateFades);
+
+          // Run after content paints
+          setTimeout(updateFades, 0);
+        })();
+
+        // Keyboard navigation for gallery modal
+        window.addEventListener('keydown', function (e) {
+          const modal = document.getElementById('galleryModal');
+          if (!modal.classList.contains('hidden')) {
+            if (e.key === 'ArrowRight') {
+              nextImage();
+            } else if (e.key === 'ArrowLeft') {
+              prevImage();
+            } else if (e.key === 'Escape') {
+              closeGallery();
+            }
+          }
+        });
+
+        // Focus trap inside modal
+        document.addEventListener('keydown', function(e) {
+          const modal = document.getElementById('galleryModal');
+          if (modal.classList.contains('hidden')) return;
+          if (e.key !== 'Tab') return;
+
+          const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+          const list = Array.prototype.slice.call(focusable).filter(el => !el.hasAttribute('disabled'));
+          if (list.length === 0) return;
+
+          const first = list[0];
+          const last = list[list.length - 1];
+
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        });
+
+        // Touch swipe support for gallery modal (swipe anywhere in modal)
+        let startX = 0;
+        let endX = 0;
+        document.addEventListener('DOMContentLoaded', function () {
+          const galleryModal = document.getElementById('galleryModal');
+          if (galleryModal) {
+            galleryModal.addEventListener('touchstart', (e) => {
+              startX = e.touches[0].clientX;
+            });
+            galleryModal.addEventListener('touchend', (e) => {
+              endX = e.changedTouches[0].clientX;
+              handleSwipe();
+            });
+          }
+        });
+        function handleSwipe() {
+          const delta = startX - endX;
+          if (delta > 50) {
+            nextImage();
+          } else if (delta < -50) {
+            prevImage();
+          }
+        }
+      </script>
+</main>
+<div id="footer" class="mt-10"></div>
+<script>
+  fetch('components/footer.html')
+    .then(res => res.text())
+    .then(data => document.getElementById('footer').innerHTML = data);
+</script>
+</body>
+</html>

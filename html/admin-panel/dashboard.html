@@ -1,0 +1,48 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard | Devansh</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex bg-gray-50 min-h-screen font-sans">
+
+  <!-- Sidebar -->
+  <aside class="w-64 bg-white shadow-md hidden md:block">
+    <div class="p-6 border-b">
+      <h2 class="text-xl font-bold text-blue-700">Devansh Admin</h2>
+    </div>
+    <nav class="p-4 space-y-2 text-sm">
+      <a href="dashboard.html" class="block px-4 py-2 rounded bg-blue-100 text-blue-700 font-semibold">Dashboard</a>
+      <a href="projects.html" class="block px-4 py-2 rounded hover:bg-blue-100">Projects</a>
+      <a href="about.html" class="block px-4 py-2 rounded hover:bg-blue-100">About</a>
+      <a href="messages.html" class="block px-4 py-2 rounded hover:bg-blue-100">Messages</a>
+      <a href="login.html" class="block px-4 py-2 rounded hover:bg-red-100 text-red-600">Logout</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-6">
+    <h1 class="text-2xl font-bold mb-4 text-gray-800">Welcome, Admin 👋</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded shadow hover:shadow-md transition">
+        <h2 class="text-lg font-semibold mb-2 text-blue-700">Total Projects</h2>
+        <p id="project-count" class="text-2xl font-bold text-gray-800">--</p>
+      </div>
+      <div class="bg-white p-6 rounded shadow hover:shadow-md transition">
+        <h2 class="text-lg font-semibold mb-2 text-blue-700">Total Messages</h2>
+        <p id="message-count" class="text-2xl font-bold text-gray-800">--</p>
+      </div>
+      <div class="bg-white p-6 rounded shadow hover:shadow-md transition">
+        <h2 class="text-lg font-semibold mb-2 text-blue-700">Profile Section</h2>
+        <p class="text-gray-600">Manage bio & image</p>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
